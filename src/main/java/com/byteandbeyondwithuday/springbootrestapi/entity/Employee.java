@@ -1,27 +1,31 @@
 package com.byteandbeyondwithuday.springbootrestapi.entity;
 
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.util.Objects;
 
+@Entity
 public class Employee {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long employeeId;
+    @Column(nullable = false, length = 100)
     private String firstName;
+    @Column(length = 100)
     private String lastName;
-    private Double salary;
+    @Column(length = 50, unique = true)
+    private String email;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal salary;
 
-    public Employee(Long id, String firstName, String lastName, Double salary) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.salary = salary;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {
@@ -40,29 +44,37 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public Double getSalary() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Double salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Employee employee)) return false;
-        return Objects.equals(id, employee.id);
+        return Objects.equals(employeeId, employee.employeeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(employeeId);
     }
 
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "id=" + employeeId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", salary=" + salary +

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: spring-boot-rest-api-development-made-simple
+  datasource:
+    url: jdbc:mysql://localhost:3306/employee_demo?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+    show-sql: true
